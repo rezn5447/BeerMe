@@ -1,0 +1,8 @@
+export const FETCH_USER = 'FETCH_USER';
+export const SET_USER = 'SET_USER';
+
+export const GRAB_INFO = 'GRAB_INFO';
+export const STADIUM_CHANGED = 'STADIUM_CHANGED';
+export const CREATE_ORDER = 'CREATE_ORDER';
+export const CREATE_ORDER_ERROR = 'CREATE_ORDER_ERROR';
+export const CREATE_ORDER_SUCCESS = 'CREATE_ORDER_SUCCESS';
