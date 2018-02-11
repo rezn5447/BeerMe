@@ -6,13 +6,9 @@ import {
 } from 'react-native';
 import { LoginManager } from 'react-native-fbsdk';
 import {ContinueButton, SeatInput} from '../components';
-import {observable} from 'mobx';
-import {createAutoSubscriber} from 'firebase-nest';
-import {observer, inject } from 'mobx-react/native';
 
 
-@inject('store')
-@observer export default class ConfirmScreen extends Component {
+class ConfirmScreen extends Component {
 
 
   _handleLogout = () => {
@@ -40,3 +36,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+
+export default connect()(ConfirmScreen)
