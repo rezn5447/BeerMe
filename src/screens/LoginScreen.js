@@ -7,10 +7,6 @@ import {
 	Dimensions,
 	TouchableOpacity
 } from 'react-native';
-import { LoginButton, AccessToken, LoginManager } from 'react-native-fbsdk';
-import { SocialIcon } from 'react-native-elements';
-import styled from 'styled-components/native';
-import { observer, inject } from 'mobx-react/native';
 import firebase from 'react-native-firebase';
 import BackImg from '../assets/bg2.png';
 import { Background } from '../components';
