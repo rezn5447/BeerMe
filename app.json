@@ -1,4 +1,5 @@
 {
-  "name": "BeerMe",
-  "displayName": "BeerMe"
+  "expo": {
+    "sdkVersion": "25.0.0"
+  }
 }

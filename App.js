@@ -1,29 +1,49 @@
-import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import React from 'react';
+import { StyleSheet, Alert, Text, View } from 'react-native';
+import { Notifications } from 'expo';
+import { Provider } from 'react-redux';
 
-import Root from './src/Root';
-import {Provider} from 'mobx-react/native';
-import firebase from 'react-native-firebase';
+import firebase from 'firebase';
+import registerForNotifications from './src/services/push_notifications';
 
-import BeerMeStore from './src/stores/BeerMeStore';
+export default class App extends React.Component {
+	componentDidMount() {
+		const config = {
+			apiKey: 'AIzaSyAUJZelmikWUWvG4voAufKtD2v5jHYNYQ8',
+			authDomain: 'beerme-7a166.firebaseapp.com',
+			databaseURL: 'https://beerme-7a166.firebaseio.com',
+			projectId: 'beerme-7a166',
+			storageBucket: 'beerme-7a166.appspot.com',
+			messagingSenderId: '752158950237'
+		};
 
+		firebase.initializeApp(config);
 
-export default class App extends Component<{}> {
+		registerForNotifications();
+		Notifications.addListener(notification => {
+			const { data: { text } } = notification;
 
-  componentWillMount(){
-    this.store = new BeerMeStore()
-  }
-
-  render() {
-    return (
-      <Provider store={this.store}>
-        <Root />
-      </Provider>
-    );
-  }
+			if (notification.origin === 'recieved' && text) {
+				Alert.alert('New Push Notification', text, [{ text: 'Ok' }]);
+			}
+		});
+	}
+	render() {
+		return (
+			<View style={styles.container}>
+				<Text>Open up App.js to start working on your app!</Text>
+				<Text>Changes you make will automatically reload.</Text>
+				<Text>Shake your phone to open the developer menu.</Text>
+			</View>
+		);
+	}
 }
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		backgroundColor: '#fff',
+		alignItems: 'center',
+		justifyContent: 'center'
+	}
+});

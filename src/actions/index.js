@@ -8,17 +8,20 @@ export const fetchUser = () => async dispatch => {
 	dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const set_user = user => {
+export const set_user = user => async dispatch => {
 	dispatch({ type: SET_USER, payload: user });
 };
 
-export const fetchStadiums () => dispatch => {
-	firebase.database().ref(`/stadiums/`)
-	.on('value', snapshot => {
-		dispatch({ type: STADUM_FETCH_SUCCESS, payload: snapshot.val() });
-	})
-}
-// 
+export const fetchStadiums = () => async dispatch => {
+	firebase
+		.database()
+		.ref('/stadiums/')
+		.on('value', snapshot => {
+			dispatch({ type: STADIUM_FETCH_SUCCESS, payload: snapshot.val() });
+		});
+};
+
+//
 // firebase.database().ref(`/users/${currentUser.uid}`)
 // .push({ name, phone, shift })
 // .then(() => {
@@ -27,7 +30,7 @@ export const fetchStadiums () => dispatch => {
 // });
 // };
 
-// 
+//
 // firebase.database().ref(`/users/${currentUser.uid}`)
 // .on('value', snapshot => {
 // 	dispatch({ type: USERS_FETCH_SUCCESS, payload: snapshot.val() });
