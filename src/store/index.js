@@ -11,14 +11,10 @@ const persistConfig = {
 	blacklist: ['navigation']
 };
 
-const persistedReducer = persistReducer(persistConfig, reducers);
+// const persistedReducer = persistReducer(persistConfig, reducers);
 
-const store = createStore(
-	persistedReducer,
-	{},
-	compose(applyMiddleware(thunk))
-);
+const store = createStore(reducers, {}, compose(applyMiddleware(thunk)));
 
-const persistor = persistStore(store);
+// const persistor = persistStore(store);
 
 export default store;

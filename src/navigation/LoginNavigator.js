@@ -1,25 +1,17 @@
-import React from 'react';
 import { StackNavigator } from 'react-navigation';
-import {
-  LoginScreen,
-  SignUpScreen,
-} from '../screens';
+import { LoginScreen, SignUpScreen } from '../screens';
 
-export default StackNavigator ({
-  Login: {
-    screen: LoginScreen,
-    navigationOptions: ({ navigation }) => ({
-      tabBarLabel: 'Login',
-      title: 'Login Header',
-    })
-  },
-  SignUp: {
-    screen: SignUpScreen,
-    navigationOptions: ({ navigation }) => ({
-      tabBarLabel: 'Sign Up',
-      title: 'Sign Up',
-    })
-  }
-}, {
-  headerMode: 'none'
-})
+export default StackNavigator(
+	{
+		Login: {
+			screen: LoginScreen
+		},
+		SignUp: {
+			screen: SignUpScreen
+		}
+	},
+	{
+		headerMode: 'none',
+		lazy: true
+	}
+);
