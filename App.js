@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert } from 'react-native';
+import { Alert, Text } from 'react-native';
 import { Notifications } from 'expo';
 import { Provider } from 'react-redux';
 import firebase from 'firebase';
@@ -33,7 +33,7 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<Provider store={store}>
-				<Root />
+				<Text>Here is the main root </Text>
 			</Provider>
 		);
 	}

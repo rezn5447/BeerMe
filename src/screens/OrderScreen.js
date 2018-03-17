@@ -1,42 +1,28 @@
 import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-} from 'react-native';
-import { LoginManager } from 'react-native-fbsdk';
-import {ContinueButton, SeatInput} from '../components';
-import {observable} from 'mobx';
-import {createAutoSubscriber} from 'firebase-nest';
-import {observer, inject } from 'mobx-react/native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
+export default class OrderScreen extends Component {
+	handleLogout = () => {
+		console.log('pressed');
+	};
 
-@inject('store')
-@observer export default class OrderScreen extends Component {
+	render() {
+		return (
+			<View style={styles.container}>
+				<Text>Order Screen</Text>
 
-
-  _handleLogout = () => {
-    LoginManager.logOut()
-    this.props.navigation.navigate("Login");
-  }
-
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Order Screen</Text>
-
-        <TouchableOpacity onPress={this._handleLogout}>
-          <Text>Log Out</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
+				<TouchableOpacity onPress={this.handleLogout}>
+					<Text>Log Out</Text>
+				</TouchableOpacity>
+			</View>
+		);
+	}
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+	container: {
+		flex: 1,
+		alignItems: 'center',
+		justifyContent: 'center'
+	}
 });
