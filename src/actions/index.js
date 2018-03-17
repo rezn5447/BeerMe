@@ -1,5 +1,5 @@
 import axios from 'axios';
-import firebase from 'react-native-firebase';
+import firebase from 'firebase';
 
 import { FETCH_USER, STADIUM_FETCH_SUCCESS, SET_USER } from './types';
 
@@ -8,7 +8,7 @@ export const fetchUser = () => async dispatch => {
 	dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const set_user = user => async dispatch => {
+export const setUser = user => async dispatch => {
 	dispatch({ type: SET_USER, payload: user });
 };
 

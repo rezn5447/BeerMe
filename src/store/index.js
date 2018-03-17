@@ -1,24 +1,26 @@
 import { createStore, compose, applyMiddleware } from 'redux';
-import { persistReducer, persistStore } from 'redux-persist';
+// import { persistReducer, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
-import storage from 'redux-persist/lib/storage';
+import logger from 'redux-logger';
 import reducers from '../reducers';
 
-const persistConfig = {
-	key: 'root',
-	storage,
-	whitelist: ['likes'],
-	blacklist: ['navigation']
-};
+// import storage from 'redux-persist/lib/storage';
+//
+// const persistConfig = {
+// 	key: 'root',
+// 	storage,
+// 	whitelist: ['likes'],
+// 	blacklist: ['navigation']
+// };
 
-const persistedReducer = persistReducer(persistConfig, reducers);
+// const persistedReducer = persistReducer(persistConfig, reducers);
 
 const store = createStore(
-	persistedReducer,
+	reducers,
 	{},
-	compose(applyMiddleware(thunk))
+	compose(applyMiddleware(thunk, logger))
 );
 
-const persistor = persistStore(store);
+// const persistor = persistStore(store);
 
 export default store;
