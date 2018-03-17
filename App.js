@@ -1,9 +1,10 @@
 import React from 'react';
-import { Alert, Text } from 'react-native';
+import { Alert } from 'react-native';
 import { Notifications } from 'expo';
 import { Provider } from 'react-redux';
 import firebase from 'firebase';
 import store from './src/store';
+import Root from './src/Root';
 
 import registerForNotifications from './src/services/push_notifications';
 
@@ -32,9 +33,7 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<Provider store={store}>
-				<Text>Open up App.js to start working on your app!</Text>
-				<Text>Changes you make will automatically reload.</Text>
-				<Text>Shake your phone to open the developer menu.</Text>
+				<Root />
 			</Provider>
 		);
 	}
