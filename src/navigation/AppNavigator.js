@@ -3,7 +3,6 @@ import { StackNavigator } from 'react-navigation';
 import LoginNavigator from './LoginNavigator';
 import CustomerNavigator from './CustomerNavigator';
 import VendorNavigator from './VendorNavigator';
-//
 
 export default StackNavigator(
 	{
