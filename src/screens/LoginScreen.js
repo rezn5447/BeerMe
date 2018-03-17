@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
 	View,
 	Text,
+	Alert,
 	StyleSheet,
 	Dimensions,
 	ImageBackground,
@@ -12,7 +13,9 @@ import { connect } from 'react-redux';
 import BackImg from '../assets/bg2.png';
 
 class LoginScreen extends Component {
-	facebookLogin = () => {};
+	facebookLogin = () => {
+		Alert.alert('pressed');
+	};
 
 	handleToSignUp = () => {
 		this.props.navigation.navigate('SignUp');
