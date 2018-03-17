@@ -33,7 +33,7 @@ export default class App extends React.Component {
 	render() {
 		return (
 			<Provider store={store}>
-				<Text>Here is the main root </Text>
+				<Root />
 			</Provider>
 		);
 	}

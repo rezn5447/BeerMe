@@ -20,7 +20,7 @@ class LoginScreen extends Component {
 
 	render() {
 		return (
-			<ImageBackground source={BackImg}>
+			<ImageBackground source={BackImg} style={styles.bgImage}>
 				<View style={styles.container}>
 					<View style={styles.loginBtn}>
 						<SocialIcon
@@ -47,6 +47,9 @@ const styles = StyleSheet.create({
 		marginTop: height / 2.2,
 		alignItems: 'center',
 		justifyContent: 'center'
+	},
+	bgImage: {
+		flex: 1
 	},
 	loginBtn: {
 		width: width / 1.5,
