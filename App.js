@@ -3,6 +3,7 @@ import { Alert, Text } from 'react-native';
 import { Notifications } from 'expo';
 import { Provider } from 'react-redux';
 import firebase from 'firebase';
+import store from './src/store';
 
 import registerForNotifications from './src/services/push_notifications';
 
