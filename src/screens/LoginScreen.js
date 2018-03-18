@@ -21,13 +21,19 @@ class LoginScreen extends Component {
 		this.onAuthComplete(nextProps);
 	};
 
-	facebookLoginHandler = () => {
-		this.props.facebookLogin();
-		Alert.alert('pressed');
+	onAuthComplete = () => {
+		if (this.props.token) {
+			this.props.navigation.navigate('Stadiums');
+		}
 	};
 
 	handleToSignUp = () => {
 		this.props.navigation.navigate('SignUp');
+	};
+
+	facebookLoginHandler = () => {
+		this.props.facebookLogin();
+		Alert.alert('pressed');
 	};
 
 	render() {
