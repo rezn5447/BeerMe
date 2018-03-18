@@ -3,18 +3,22 @@ import {
 	View,
 	Text,
 	Alert,
-	StyleSheet,
 	Dimensions,
 	ImageBackground,
 	TouchableOpacity
 } from 'react-native';
 import { SocialIcon } from 'react-native-elements';
 import { connect } from 'react-redux';
+import { facebookLogin } from '../actions';
 import BackImg from '../assets/bg2.png';
 
 class LoginScreen extends Component {
 	componentDidMount = () => {
 		this.onAuthComplete(this.props);
+	};
+
+	componentWillReceiveProps = nextProps => {
+		this.onAuthComplete(nextProps);
 	};
 
 	facebookLoginHandler = () => {
@@ -49,7 +53,7 @@ class LoginScreen extends Component {
 
 const { width, height } = Dimensions.get('window');
 
-const styles = StyleSheet.create({
+const styles = {
 	container: {
 		flex: 1,
 		marginTop: height / 2.2,
@@ -67,7 +71,7 @@ const styles = StyleSheet.create({
 	signUp: {
 		marginTop: 25
 	}
-});
+};
 
 const mapStateToProps = ({ auth }) => ({ token: auth.token });
 
