@@ -13,7 +13,12 @@ import { connect } from 'react-redux';
 import BackImg from '../assets/bg2.png';
 
 class LoginScreen extends Component {
-	facebookLogin = () => {
+	componentDidMount = () => {
+		this.onAuthComplete(this.props);
+	};
+
+	facebookLoginHandler = () => {
+		this.props.facebookLogin();
 		Alert.alert('pressed');
 	};
 
@@ -30,7 +35,7 @@ class LoginScreen extends Component {
 							title="Sign In With Facebook"
 							button
 							type="facebook"
-							onPress={this.facebookLogin}
+							onPress={this.facebookLoginHandler}
 						/>
 					</View>
 					<TouchableOpacity style={styles.signUp} onPress={this.handleToSignUp}>
@@ -64,4 +69,6 @@ const styles = StyleSheet.create({
 	}
 });
 
-export default connect(null, {})(LoginScreen);
+const mapStateToProps = ({ auth }) => ({ token: auth.token });
+
+export default connect(mapStateToProps, { facebookLogin })(LoginScreen);
