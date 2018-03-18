@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { View, Alert, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, Alert, StyleSheet, Dimensions } from 'react-native';
 import firebase from 'firebase';
-
-import { TopSwitch, SignUpInput } from '../components';
 
 export default class SignUpScreen extends Component {
 	_handleSignUp = () => {
@@ -26,21 +24,13 @@ export default class SignUpScreen extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<TopSwitch
-					value={this.value}
-					onValueChange={value => this.handleChange(value)}
-				/>
-
-				<SignUpInput text={'Username: '} />
-				<SignUpInput text={'Confirm Username: '} />
-				<SignUpInput text={'Password: '} secureTextEntry={true} />
-				<SignUpInput text={'Confirm Password: '} secureTextEntry={true} />
+				<Text>Lets try this again </Text>
 			</View>
 		);
 	}
 }
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
 	container: {

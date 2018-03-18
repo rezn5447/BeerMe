@@ -1,9 +1,11 @@
-import { FETCH_USER } from '../actions/types';
+import { FACEBOOK_LOGIN_SUCCESS, FACEBOOK_LOGIN_FAIL } from '../actions/types';
 
-export default function authReducer(state = null, action) {
+export default function authReducer(state = {}, action) {
 	switch (action.type) {
-		case FETCH_USER:
-			return action.payload || false;
+		case FACEBOOK_LOGIN_SUCCESS:
+			return { token: action.payload };
+		case FACEBOOK_LOGIN_FAIL:
+			return { token: null };
 		default:
 			return state;
 	}

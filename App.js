@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, Text } from 'react-native';
+import { Alert } from 'react-native';
 import { Notifications } from 'expo';
 import { Provider } from 'react-redux';
 import firebase from 'firebase';
@@ -29,11 +29,20 @@ export default class App extends React.Component {
 				Alert.alert('New Push Notification', text, [{ text: 'Ok' }]);
 			}
 		});
+
+		firebase.auth().onAuthStateChanged(user => {
+			if (user != null) {
+				Alert.alert('We are authenticated now!');
+			}
+
+			// Do other things
+		});
 	}
+
 	render() {
 		return (
 			<Provider store={store}>
-				<Text>Here is the main root </Text>
+				<Root />
 			</Provider>
 		);
 	}

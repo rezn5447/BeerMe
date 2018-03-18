@@ -2,32 +2,50 @@ import React, { Component } from 'react';
 import {
 	View,
 	Text,
-	StyleSheet,
+	Alert,
 	Dimensions,
 	ImageBackground,
 	TouchableOpacity
 } from 'react-native';
 import { SocialIcon } from 'react-native-elements';
 import { connect } from 'react-redux';
+import { facebookLogin } from '../actions';
 import BackImg from '../assets/bg2.png';
 
 class LoginScreen extends Component {
-	facebookLogin = () => {};
+	componentDidMount = () => {
+		this.onAuthComplete(this.props);
+	};
+
+	componentWillReceiveProps = nextProps => {
+		this.onAuthComplete(nextProps);
+	};
+
+	onAuthComplete = () => {
+		if (this.props.token) {
+			this.props.navigation.navigate('Stadiums');
+		}
+	};
 
 	handleToSignUp = () => {
 		this.props.navigation.navigate('SignUp');
 	};
 
+	facebookLoginHandler = () => {
+		this.props.facebookLogin();
+		Alert.alert('pressed');
+	};
+
 	render() {
 		return (
-			<ImageBackground source={BackImg}>
+			<ImageBackground source={BackImg} style={styles.bgImage}>
 				<View style={styles.container}>
 					<View style={styles.loginBtn}>
 						<SocialIcon
 							title="Sign In With Facebook"
 							button
 							type="facebook"
-							onPress={this.facebookLogin}
+							onPress={this.facebookLoginHandler}
 						/>
 					</View>
 					<TouchableOpacity style={styles.signUp} onPress={this.handleToSignUp}>
@@ -41,12 +59,15 @@ class LoginScreen extends Component {
 
 const { width, height } = Dimensions.get('window');
 
-const styles = StyleSheet.create({
+const styles = {
 	container: {
 		flex: 1,
 		marginTop: height / 2.2,
 		alignItems: 'center',
 		justifyContent: 'center'
+	},
+	bgImage: {
+		flex: 1
 	},
 	loginBtn: {
 		width: width / 1.5,
@@ -56,6 +77,8 @@ const styles = StyleSheet.create({
 	signUp: {
 		marginTop: 25
 	}
-});
+};
 
-export default connect(null, {})(LoginScreen);
+const mapStateToProps = ({ auth }) => ({ token: auth.token });
+
+export default connect(mapStateToProps, { facebookLogin })(LoginScreen);
