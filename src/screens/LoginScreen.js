@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
 	View,
 	Text,
-	Alert,
 	Dimensions,
 	ImageBackground,
 	TouchableOpacity
@@ -21,8 +20,8 @@ class LoginScreen extends Component {
 		this.onAuthComplete(nextProps);
 	};
 
-	onAuthComplete = () => {
-		if (this.props.token) {
+	onAuthComplete = props => {
+		if (props.token) {
 			this.props.navigation.navigate('Stadiums');
 		}
 	};
@@ -33,7 +32,6 @@ class LoginScreen extends Component {
 
 	facebookLoginHandler = () => {
 		this.props.facebookLogin();
-		Alert.alert('pressed');
 	};
 
 	render() {

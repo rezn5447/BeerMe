@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, ImageBackground } from 'react-native';
-
+import { View, Alert, Text, BackHandler, ImageBackground } from 'react-native';
+import { connect } from 'react-redux';
+import { ContinueButton } from '../components';
 import BackImg from '../assets/bg1.png';
-import { Header, ContinueButton } from '../components';
 
-export default class StadiumScreen extends Component {
+class StadiumScreen extends Component {
+	static navigationOptions = {
+		title: 'Stadiums'
+	};
+
+	componentDidMount = () => {
+		BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
+	};
+
 	handleNav = () => {
 		this.props.navigation.navigate('Seat');
 	};
@@ -13,14 +21,31 @@ export default class StadiumScreen extends Component {
 		this.props.navigation.navigate('Login');
 	};
 
-	renderStadiumList() {}
+	handleBackButton = () => {
+		Alert.alert('Logging Out', 'Log out and Return to Title Screen?', [
+			{
+				text: 'Cancel',
+				onPress: () => console.log('Cancel Pressed'),
+				style: 'cancel'
+			},
+			{
+				text: 'OK',
+				onPress: () => BackHandler.exitApp()
+			}
+		]);
+	};
+
+	renderStadiumList() {
+		// return this.props.stadiums.map(stadium => )
+	}
 
 	render() {
 		return (
-			<ImageBackground img={BackImg}>
+			<ImageBackground source={BackImg} style={styles.bgImg}>
 				<View style={styles.container}>
-					<Header text={'Choose a Stadium'} />
-					{this.renderStadiumList()}
+					<View>
+						<Text>Here is where the stadiums go</Text>
+					</View>
 					<ContinueButton onPress={this.handleNav} />
 				</View>
 			</ImageBackground>
@@ -28,10 +53,17 @@ export default class StadiumScreen extends Component {
 	}
 }
 
-const styles = StyleSheet.create({
+const styles = {
 	container: {
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center'
+	},
+	bgImg: {
+		flex: 1
 	}
-});
+};
+
+const mapStateToProps = () => {};
+
+export default connect(mapStateToProps, {})(StadiumScreen);
