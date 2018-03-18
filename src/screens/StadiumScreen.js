@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { View, Alert, Text, BackHandler, ImageBackground } from 'react-native';
+import {
+	View,
+	Alert,
+	ToastAndroid,
+	Text,
+	BackHandler,
+	ImageBackground
+} from 'react-native';
 import { connect } from 'react-redux';
 import { ContinueButton } from '../components';
 import BackImg from '../assets/bg1.png';
@@ -19,18 +26,23 @@ class StadiumScreen extends Component {
 
 	handleLogout = () => {
 		this.props.navigation.navigate('Login');
+		ToastAndroid.show('Action canceled', ToastAndroid.SHORT);
+	};
+
+	handleCancel = () => {
+		ToastAndroid.show('Action canceled', ToastAndroid.SHORT);
 	};
 
 	handleBackButton = () => {
 		Alert.alert('Logging Out', 'Log out and Return to Title Screen?', [
 			{
 				text: 'Cancel',
-				onPress: () => console.log('Cancel Pressed'),
+				onPress: () => this.handleCancel,
 				style: 'cancel'
 			},
 			{
 				text: 'OK',
-				onPress: () => BackHandler.exitApp()
+				onPress: () => this.handleLogout
 			}
 		]);
 	};
