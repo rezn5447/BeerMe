@@ -7,15 +7,13 @@ import SeatScreen from './SeatScreen';
 import SignUpScreen from './SignUpScreen';
 import StadiumScreen from './StadiumScreen';
 
-
-
 export {
-  ConfirmScreen,
-  LoginScreen,
-  OrderScreen,
-  OrdersScreen,
-  PlaceScreen,
-  SeatScreen,
-  SignUpScreen,
-  StadiumScreen,
-}
+	ConfirmScreen,
+	LoginScreen,
+	OrderScreen,
+	OrdersScreen,
+	PlaceScreen,
+	SeatScreen,
+	SignUpScreen,
+	StadiumScreen
+};

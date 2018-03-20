@@ -28,7 +28,6 @@ const firebaseConfig = {
 
 const fbDataConfig = {
 	userProfile: 'users',
-	attachAuthIsReady: true, // attaches auth is ready promise to store
 	enableLogging: false
 };
 
