@@ -29,14 +29,6 @@ export default class App extends React.Component {
 				Alert.alert('New Push Notification', text, [{ text: 'Ok' }]);
 			}
 		});
-
-		firebase.auth().onAuthStateChanged(user => {
-			if (user != null) {
-				Alert.alert('We are authenticated now!');
-			}
-
-			// Do other things
-		});
 	}
 
 	render() {
