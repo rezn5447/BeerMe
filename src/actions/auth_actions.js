@@ -1,7 +1,7 @@
 import { AsyncStorage } from 'react-native';
 import { Facebook } from 'expo';
 import firebase from 'firebase';
-import { FACEBOOK_LOGIN_SUCCESS, FACEBOOK_LOGIN_FAIL, LOGOUT } from './types';
+import { FACEBOOK_LOGIN_SUCCESS, FACEBOOK_LOGIN_FAIL, SIGN_OUT } from './types';
 
 export const facebookLogin = () => async dispatch => {
 	const token = await AsyncStorage.getItem('fb_token');
@@ -28,18 +28,10 @@ const doFacebookLogin = async dispatch => {
 		return dispatch({ type: FACEBOOK_LOGIN_FAIL });
 	}
 
-	await AsyncStorage.setItem('fb_token', token);
-	const credential = firebase.auth.FacebookAuthProvider.credential(token);
-	firebase
-		.auth()
-		.signInWithCredential(credential)
-		.catch(err => {
-			console.log('fb sign in failed!', err);
-		});
 	dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: token });
 };
 
-export const logout = () => async dispatch => {
+export const signOut = () => async dispatch => {
 	firebase.auth().signOut();
-	dispatch({ type: LOGOUT });
+	dispatch({ type: SIGN_OUT });
 };

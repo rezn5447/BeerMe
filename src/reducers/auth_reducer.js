@@ -5,7 +5,9 @@ import {
 	SIGN_OUT
 } from '../actions/types';
 
-export default function authReducer(state = {}, action) {
+const INITIALSTATE = {};
+
+export default function authReducer(state = INITIALSTATE, action) {
 	switch (action.type) {
 		case FACEBOOK_LOGIN_SUCCESS:
 			return { token: action.payload };
@@ -13,6 +15,8 @@ export default function authReducer(state = {}, action) {
 			return { token: null };
 		case FIREBASE_LOGIN_SUCCESS:
 			return { token: action.payload };
+		case SIGN_OUT:
+			return INITIALSTATE;
 		default:
 			return state;
 	}
