@@ -45,10 +45,6 @@ const store = createStore(
 	)
 );
 
-store.firebaseAuthIsReady.then(() => {
-	Alert.alert('Auth has loaded');
-});
-
 // const persistor = persistStore(store);
 
 export default store;

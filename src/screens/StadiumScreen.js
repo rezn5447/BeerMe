@@ -20,29 +20,35 @@ class StadiumScreen extends Component {
 		BackHandler.addEventListener('hardwareBackPress', this.handleBackButton);
 	};
 
+	componentWillUnmount = () => {
+		BackHandler.removeEventListener('hardwareBackPress', this.handleBackButton);
+	};
+
 	handleNav = () => {
 		this.props.navigation.navigate('Seat');
 	};
 
 	handleLogout = () => {
-		this.props.navigation.navigate('Login');
-		ToastAndroid.show('Action canceled', ToastAndroid.SHORT);
+		ToastAndroid.show('Logged Out', ToastAndroid.SHORT);
+		this.props.navigation.goBack(null);
+		return true;
 	};
 
 	handleCancel = () => {
 		ToastAndroid.show('Action canceled', ToastAndroid.SHORT);
+		return true;
 	};
 
 	handleBackButton = () => {
 		Alert.alert('Logging Out', 'Log out and Return to Title Screen?', [
 			{
 				text: 'Cancel',
-				onPress: () => this.handleCancel,
+				onPress: this.handleCancel,
 				style: 'cancel'
 			},
 			{
 				text: 'OK',
-				onPress: () => this.handleLogout
+				onPress: this.handleLogout
 			}
 		]);
 	};
@@ -57,6 +63,7 @@ class StadiumScreen extends Component {
 				<View style={styles.container}>
 					<View>
 						<Text>Here is where the stadiums go</Text>
+						<Text>{this.props.profile.displayName}</Text>
 					</View>
 					<ContinueButton onPress={this.handleNav} />
 				</View>
@@ -76,6 +83,8 @@ const styles = {
 	}
 };
 
-const mapStateToProps = () => {};
+const mapStateToProps = ({ firebase }) => ({
+	profile: firebase.profile
+});
 
 export default connect(mapStateToProps, {})(StadiumScreen);

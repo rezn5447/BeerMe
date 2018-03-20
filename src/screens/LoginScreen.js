@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import {
 	View,
 	Text,
+	Alert,
 	Dimensions,
 	ImageBackground,
 	TouchableOpacity
 } from 'react-native';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import firebase from 'firebase';
+import { firebaseConnect } from 'react-redux-firebase';
 import { SocialIcon } from 'react-native-elements';
 
-import { connect } from 'react-redux';
 import { facebookLogin } from '../actions';
 import BackImg from '../assets/bg2.png';
 
@@ -23,6 +27,10 @@ class LoginScreen extends Component {
 
 	onAuthComplete = props => {
 		if (props.token) {
+			Alert.alert('token created');
+			// props.firebase.login({
+			// 	credential: firebase.auth.FacebookAuthProvider.credential(props.token)
+			// });
 			this.props.navigation.navigate('Stadiums');
 		}
 	};
@@ -78,8 +86,12 @@ const styles = {
 	}
 };
 
-const mapStateToProps = ({ auth }) => ({
-	token: auth.token
+const mapStateToProps = state => ({
+	token: state.auth.token,
+	user: state.firebase.profile
 });
 
-export default connect(mapStateToProps, { facebookLogin })(LoginScreen);
+export default compose(
+	firebaseConnect(),
+	connect(mapStateToProps, { facebookLogin })
+)(LoginScreen);
