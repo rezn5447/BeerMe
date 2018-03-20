@@ -1,5 +1,4 @@
 import { createStore, compose, applyMiddleware } from 'redux';
-import { Alert } from 'react-native';
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
 // import { persistReducer, persistStore } from 'redux-persist';
 import firebase from 'firebase';

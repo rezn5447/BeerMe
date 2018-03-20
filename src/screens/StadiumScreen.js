@@ -8,6 +8,8 @@ import {
 	ImageBackground
 } from 'react-native';
 import { connect } from 'react-redux';
+import { signOut } from '../actions';
+
 import { ContinueButton } from '../components';
 import BackImg from '../assets/bg1.png';
 
@@ -87,4 +89,4 @@ const mapStateToProps = ({ firebase }) => ({
 	profile: firebase.profile
 });
 
-export default connect(mapStateToProps, {})(StadiumScreen);
+export default connect(mapStateToProps, { signOut })(StadiumScreen);

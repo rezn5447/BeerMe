@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import firebase from 'firebase';
 import { firebaseConnect } from 'react-redux-firebase';
 import { SocialIcon } from 'react-native-elements';
 
