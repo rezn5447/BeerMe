@@ -7,6 +7,7 @@ import {
 	TouchableOpacity
 } from 'react-native';
 import { SocialIcon } from 'react-native-elements';
+
 import { connect } from 'react-redux';
 import { facebookLogin } from '../actions';
 import BackImg from '../assets/bg2.png';
@@ -77,6 +78,8 @@ const styles = {
 	}
 };
 
-const mapStateToProps = ({ auth }) => ({ token: auth.token });
+const mapStateToProps = ({ auth }) => ({
+	token: auth.token
+});
 
 export default connect(mapStateToProps, { facebookLogin })(LoginScreen);
