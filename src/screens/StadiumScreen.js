@@ -32,13 +32,11 @@ class StadiumScreen extends Component {
 
 	handleLogout = () => {
 		ToastAndroid.show('Logged Out', ToastAndroid.SHORT);
-		this.props.navigation.goBack(null);
-		return true;
+		this.props.signOut();
 	};
 
 	handleCancel = () => {
 		ToastAndroid.show('Action canceled', ToastAndroid.SHORT);
-		return true;
 	};
 
 	handleBackButton = () => {
@@ -53,6 +51,7 @@ class StadiumScreen extends Component {
 				onPress: this.handleLogout
 			}
 		]);
+		return true;
 	};
 
 	renderStadiumList() {

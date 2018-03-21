@@ -27,11 +27,19 @@ const doFacebookLogin = async dispatch => {
 	if (type === 'cancel') {
 		return dispatch({ type: FACEBOOK_LOGIN_FAIL });
 	}
-
+	await AsyncStorage.setItem('fb_token', token);
+	const credential = firebase.auth.FacebookAuthProvider.credential(token);
+	firebase
+		.auth()
+		.signInWithCredential(credential)
+		.catch(err => {
+			console.log('fb sign in failed!', err);
+		});
 	dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: token });
 };
 
 export const signOut = () => async dispatch => {
+	await AsyncStorage.removeItem('fb_token');
 	firebase.auth().signOut();
 	dispatch({ type: SIGN_OUT });
 };

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
 	View,
 	Text,
-	Alert,
 	Dimensions,
 	ImageBackground,
 	TouchableOpacity
@@ -16,24 +15,6 @@ import { facebookLogin } from '../actions';
 import BackImg from '../assets/bg2.png';
 
 class LoginScreen extends Component {
-	componentDidMount = () => {
-		this.onAuthComplete(this.props);
-	};
-
-	componentWillReceiveProps = nextProps => {
-		this.onAuthComplete(nextProps);
-	};
-
-	onAuthComplete = props => {
-		if (props.token) {
-			Alert.alert('token created');
-			// props.firebase.login({
-			// 	credential: firebase.auth.FacebookAuthProvider.credential(props.token)
-			// });
-			this.props.navigation.navigate('Stadiums');
-		}
-	};
-
 	handleToSignUp = () => {
 		this.props.navigation.navigate('SignUp');
 	};

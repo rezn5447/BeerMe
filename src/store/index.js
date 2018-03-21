@@ -1,5 +1,6 @@
 import { createStore, compose, applyMiddleware } from 'redux';
 import { reactReduxFirebase, getFirebase } from 'react-redux-firebase';
+import { Alert } from 'react-native';
 // import { persistReducer, persistStore } from 'redux-persist';
 import firebase from 'firebase';
 import thunk from 'redux-thunk';
@@ -28,7 +29,8 @@ const firebaseConfig = {
 
 const fbDataConfig = {
 	userProfile: 'users',
-	enableLogging: false
+	enableLogging: false,
+	attachAuthIsReady: true // attaches auth is ready promise to store
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -44,5 +46,7 @@ const store = createStore(
 );
 
 // const persistor = persistStore(store);
-
+store.firebaseAuthIsReady.then(() => {
+	Alert.alert('Auth has loaded');
+});
 export default store;

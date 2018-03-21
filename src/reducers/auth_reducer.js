@@ -16,7 +16,7 @@ export default function authReducer(state = INITIALSTATE, action) {
 		case FIREBASE_LOGIN_SUCCESS:
 			return { token: action.payload };
 		case SIGN_OUT:
-			return INITIALSTATE;
+			return { ...INITIALSTATE };
 		default:
 			return state;
 	}
