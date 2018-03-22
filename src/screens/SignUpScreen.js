@@ -1,8 +1,23 @@
 import React, { Component } from 'react';
-import { View, Text, Alert, StyleSheet, Dimensions } from 'react-native';
+import {
+	FormLabel,
+	FormInput,
+	FormValidationMessage
+} from 'react-native-elements';
+import PropTypes from 'prop-types';
+import { View, Alert, Dimensions } from 'react-native';
 import firebase from 'firebase';
 
 export default class SignUpScreen extends Component {
+	state = {
+		email: '',
+		ageCheck: false,
+		confirmEmail: '',
+		age: 0,
+		password: '',
+		confirmPassword: ''
+	};
+
 	_handleSignUp = () => {
 		firebase
 			.auth()
@@ -13,8 +28,11 @@ export default class SignUpScreen extends Component {
 			});
 	};
 
-	handleChange = value => {
-		this.value = value;
+	handleChange = (param, value) => {
+		this.setState({
+			...this.state,
+			[param]: value
+		});
 	};
 
 	handleBack = () => {
@@ -24,7 +42,21 @@ export default class SignUpScreen extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<Text>Lets try this again </Text>
+				<View style={styles.textInputContainer}>
+					<FormLabel>Email</FormLabel>
+					<FormInput
+						value={this.state.email}
+						onChangeText={this.handleInputChange}
+					/>
+					<FormValidationMessage>
+						{this.state.errorMessage}
+					</FormValidationMessage>
+
+					<CheckBox
+						title="I can legally verify I am 21 years or older"
+						checked={this.state.ageCheck}
+					/>
+				</View>
 			</View>
 		);
 	}
@@ -32,7 +64,7 @@ export default class SignUpScreen extends Component {
 
 const { width } = Dimensions.get('window');
 
-const styles = StyleSheet.create({
+const styles = {
 	container: {
 		flex: 1,
 		alignItems: 'center',
@@ -57,4 +89,10 @@ const styles = StyleSheet.create({
 		padding: 3,
 		borderRadius: 3
 	}
-});
+};
+
+SignUpScreen.propTypes = {
+	email: PropTypes.string,
+	password: PropTypes.string,
+	age: PropTypes.number
+};
