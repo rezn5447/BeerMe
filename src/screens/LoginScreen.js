@@ -6,17 +6,26 @@ import {
 	ImageBackground,
 	TouchableOpacity
 } from 'react-native';
+import Hr from 'react-native-hr-plus';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firebaseConnect } from 'react-redux-firebase';
-import { SocialIcon } from 'react-native-elements';
+import { SocialIcon, Icon, Input } from 'react-native-elements';
 
 import { facebookLogin } from '../actions';
 import BackImg from '../assets/bg2.png';
 
 class LoginScreen extends Component {
+	state = { userName: '', password: '' };
+
 	handleToSignUp = () => {
 		this.props.navigation.navigate('SignUp');
+	};
+
+	handleInputChange = text => {
+		this.setState({
+			userName: text
+		});
 	};
 
 	facebookLoginHandler = () => {
@@ -34,7 +43,18 @@ class LoginScreen extends Component {
 							type="facebook"
 							onPress={this.facebookLoginHandler}
 						/>
+						<Hr color="black" width={1}>
+							<Text style={styles.textWithDivider}>OR</Text>
+						</Hr>
 					</View>
+					<Input
+						placeholder="Username"
+						leftIcon={<Icon name="account-circle" size={34} color="gray" />}
+					/>
+					<Input
+						placeholder="Email"
+						leftIcon={<Icon name="mail-outline" size={34} color="gray" />}
+					/>
 					<TouchableOpacity style={styles.signUp} onPress={this.handleToSignUp}>
 						<Text>To Sign Up</Text>
 					</TouchableOpacity>
@@ -60,6 +80,11 @@ const styles = {
 		width: width / 1.5,
 		paddingTop: 5,
 		paddingBottom: 25
+	},
+	textWithDivider: {
+		color: '#5f575a',
+		marginVertical: 10,
+		paddingHorizontal: 10
 	},
 	signUp: {
 		marginTop: 25

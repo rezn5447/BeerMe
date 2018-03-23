@@ -15,8 +15,7 @@ export default class SignUpScreen extends Component {
 		confirmEmail: '',
 		password: '',
 		confirmPassword: '',
-		age: 0,
-		ageCheck: false
+		checked: false
 	};
 
 	_handleSignUp = () => {
@@ -36,10 +35,10 @@ export default class SignUpScreen extends Component {
 		});
 	};
 
-	handleCheckChange = value => {
+	handleCheckChange = () => {
 		this.setState({
 			...this.state,
-			ageCheck: !value
+			checked: !this.state.checked
 		});
 	};
 
@@ -60,7 +59,7 @@ export default class SignUpScreen extends Component {
 					<FormLabel>Confirm Email</FormLabel>
 					<FormInput
 						keyboardType="email-address"
-						value={this.state.confirmE8mail}
+						value={this.state.confirmEmail}
 						onChangeText={value =>
 							this.handleInputChange('confirmEmail', value)
 						}
@@ -84,8 +83,8 @@ export default class SignUpScreen extends Component {
 					<FormLabel>Confirm Legal Drinking Age</FormLabel>
 					<CheckBox
 						title="I can legally verify I am 21 years or older"
-						checked={this.state.ageCheck}
-						onPress={value => this.handleCheckChange(!value)}
+						checked={this.state.checked}
+						onPress={this.handleCheckChange}
 					/>
 
 					<FormValidationMessage>
