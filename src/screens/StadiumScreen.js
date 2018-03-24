@@ -8,8 +8,9 @@ import {
 	ImageBackground
 } from 'react-native';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { signOut } from '../actions';
-
+import { firebaseConnect, isLoaded, isEmpty } from 'react-redux-firebase';
 import { ContinueButton } from '../components';
 import BackImg from '../assets/bg1.png';
 
@@ -55,7 +56,16 @@ class StadiumScreen extends Component {
 	};
 
 	renderStadiumList() {
-		// return this.props.stadiums.map(stadium => )
+		const { stadiums } = this.props;
+		if (!isLoaded(stadiums)) {
+			return <Text>No Stadiums rendering</Text>;
+		}
+
+		if (isEmpty(stadiums)) {
+			return <Text>No Stadiums rendering</Text>;
+		}
+
+		return <Text>{stadiums}</Text>;
 	}
 
 	render() {
@@ -65,6 +75,7 @@ class StadiumScreen extends Component {
 					<View>
 						<Text>Here is where the stadiums go</Text>
 						<Text>{this.props.profile.displayName}</Text>
+						{this.renderStadiumList()}
 					</View>
 					<ContinueButton
 						title="Continue"
@@ -89,7 +100,8 @@ const styles = {
 };
 
 const mapStateToProps = ({ firebase }) => ({
-	profile: firebase.profile
+	profile: firebase.profile,
+	stadiums: null
 });
 
 export default connect(mapStateToProps, { signOut })(StadiumScreen);

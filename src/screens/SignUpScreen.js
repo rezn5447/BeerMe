@@ -90,15 +90,16 @@ export default class SignUpScreen extends Component {
 
 					<CheckBox
 						title="I can legally verify I am 21 years or older"
+						containerStyle={{ marginBottom: 25 }}
 						checked={this.state.checked}
 						onPress={this.handleCheckChange}
 					/>
+					<ContinueButton
+						title="Create Account"
+						name="account-circle"
+						onPress={this.createAccount}
+					/>
 				</View>
-				<ContinueButton
-					title="Create Account"
-					name="account-circle"
-					onPress={this.createAccount}
-				/>
 			</View>
 		);
 	}
