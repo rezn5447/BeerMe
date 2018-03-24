@@ -73,7 +73,7 @@ class StadiumScreen extends Component {
 						key={item.key}
 						title={item.value.label}
 						buttonStyle={styles.stadiumButton}
-						onPress={() => this.handleStadiumPress(item.key.name)}
+						onPress={() => this.handleStadiumPress(item.value.name)}
 					/>
 				)}
 			/>
