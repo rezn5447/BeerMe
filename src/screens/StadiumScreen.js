@@ -66,7 +66,11 @@ class StadiumScreen extends Component {
 						<Text>Here is where the stadiums go</Text>
 						<Text>{this.props.profile.displayName}</Text>
 					</View>
-					<ContinueButton onPress={this.handleNav} />
+					<ContinueButton
+						title="Continue"
+						name="account-circle"
+						onPress={this.handleNav}
+					/>
 				</View>
 			</ImageBackground>
 		);

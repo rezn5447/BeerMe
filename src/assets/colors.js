@@ -4,3 +4,5 @@ const colors = {
 	priceGray: '#95989A',
 	lightBlue: '#8FB2C5'
 };
+
+export default colors;

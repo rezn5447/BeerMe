@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { CheckBox, Icon, Input } from 'react-native-elements';
 import PropTypes from 'prop-types';
+import { CheckBox, Icon, Input } from 'react-native-elements';
 import { View, Alert, Dimensions } from 'react-native';
 import firebase from 'firebase';
+import { ContinueButton } from '../components';
 
 export default class SignUpScreen extends Component {
 	state = {
@@ -93,6 +94,11 @@ export default class SignUpScreen extends Component {
 						onPress={this.handleCheckChange}
 					/>
 				</View>
+				<ContinueButton
+					title="Create Account"
+					name="account-circle"
+					onPress={this.createAccount}
+				/>
 			</View>
 		);
 	}

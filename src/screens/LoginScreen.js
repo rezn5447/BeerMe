@@ -3,6 +3,7 @@ import {
 	View,
 	Text,
 	Dimensions,
+	KeyboardAvoidingView,
 	ImageBackground,
 	TouchableOpacity
 } from 'react-native';
@@ -36,7 +37,7 @@ class LoginScreen extends Component {
 		return (
 			<ImageBackground source={BackImg} style={styles.bgImage}>
 				<View style={styles.container}>
-					<View style={styles.loginBtn}>
+					<KeyboardAvoidingView behavior="padding" style={styles.loginBtn}>
 						<SocialIcon
 							title="Sign In With Facebook"
 							button
@@ -48,20 +49,21 @@ class LoginScreen extends Component {
 						<Hr color="black" width={1}>
 							<Text style={styles.textWithDivider}>OR</Text>
 						</Hr>
-					</View>
-					<Input
-						placeholder="Email"
-						leftIcon={<Icon name="account-circle" size={34} color="gray" />}
-						containerStyle={styles.inputContainer}
-					/>
-					<Input
-						placeholder="Password"
-						secureTextEntry
-						leftIcon={<Icon name="lock" size={34} color="gray" />}
-						containerStyle={styles.inputContainer}
-					/>
+
+						<Input
+							placeholder="Email"
+							leftIcon={<Icon name="account-circle" size={34} color="gray" />}
+							containerStyle={styles.inputContainer}
+						/>
+						<Input
+							placeholder="Password"
+							secureTextEntry
+							leftIcon={<Icon name="lock" size={34} color="gray" />}
+							containerStyle={styles.inputContainer}
+						/>
+					</KeyboardAvoidingView>
 					<TouchableOpacity style={styles.signUp} onPress={this.handleToSignUp}>
-						<Text>To Sign Up</Text>
+						<Text style={{ color: '#FD4654' }}>To Sign Up</Text>
 					</TouchableOpacity>
 				</View>
 			</ImageBackground>
@@ -93,13 +95,14 @@ const styles = {
 	inputContainer: {
 		padding: 5,
 		margin: 5,
+		width: width / 1.6,
 		borderWidth: 1,
 		borderRadius: 15
 	},
 	signUp: {
 		position: 'absolute',
 		bottom: 25,
-		right: width / 5,
+		right: width / 6,
 		marginTop: 25
 	}
 };
