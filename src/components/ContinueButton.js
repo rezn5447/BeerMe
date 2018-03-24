@@ -1,14 +1,14 @@
 import React from 'react';
-import { Button } from 'react-native-elements';
+import { Button, Icon } from 'react-native-elements';
 
 const ContinueButton = props => (
 	<Button
-		iconRight={{ name: 'arrow-forward' }}
-		title="Continue"
+		icon={<Icon name={props.name} size={25} color="white" />}
+		title={props.title}
 		onPress={props.onPress}
 		buttonStyle={{
-			backgroundColor: '#b71205',
-			width: 150,
+			backgroundColor: '#FD4654',
+			width: 300,
 			height: 45,
 			borderRadius: 15
 		}}

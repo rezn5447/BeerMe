@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { CheckBox, Icon, Input } from 'react-native-elements';
 import PropTypes from 'prop-types';
+import { CheckBox, Icon, Input } from 'react-native-elements';
 import { View, Alert, Dimensions } from 'react-native';
 import firebase from 'firebase';
+import { ContinueButton } from '../components';
 
 export default class SignUpScreen extends Component {
 	state = {
@@ -89,8 +90,14 @@ export default class SignUpScreen extends Component {
 
 					<CheckBox
 						title="I can legally verify I am 21 years or older"
+						containerStyle={{ marginBottom: 25 }}
 						checked={this.state.checked}
 						onPress={this.handleCheckChange}
+					/>
+					<ContinueButton
+						title="Create Account"
+						name="account-circle"
+						onPress={this.createAccount}
 					/>
 				</View>
 			</View>
