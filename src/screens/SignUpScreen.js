@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import {
-	CheckBox,
-	FormLabel,
-	FormInput,
-	FormValidationMessage
-} from 'react-native-elements';
+import { CheckBox, Icon, Input } from 'react-native-elements';
 import PropTypes from 'prop-types';
 import { View, Alert, Dimensions } from 'react-native';
 import firebase from 'firebase';
@@ -50,46 +45,53 @@ export default class SignUpScreen extends Component {
 		return (
 			<View style={styles.container}>
 				<View style={styles.textInputContainer}>
-					<FormLabel>Email</FormLabel>
-					<FormInput
-						keyboardType="email-address"
-						value={this.state.email}
-						onChangeText={value => this.handleInputChange('email', value)}
-					/>
-					<FormLabel>Confirm Email</FormLabel>
-					<FormInput
-						keyboardType="email-address"
-						value={this.state.confirmEmail}
-						onChangeText={value =>
-							this.handleInputChange('confirmEmail', value)
-						}
-					/>
-					<FormLabel>Password</FormLabel>
-					<FormInput
-						keyboardType="default"
-						secureTextEntry
-						value={this.state.password}
-						onChangeText={value => this.handleInputChange('password', value)}
-					/>
-					<FormLabel>Confirm Password</FormLabel>
-					<FormInput
-						keyboardType="default"
-						secureTextEntry
-						value={this.state.confirmPassword}
-						onChangeText={value =>
-							this.handleInputChange('confirmPassword', value)
-						}
-					/>
-					<FormLabel>Confirm Legal Drinking Age</FormLabel>
+					<View style={styles.dualHolder}>
+						<Input
+							placeholder="Email"
+							keyboardType="email-address"
+							value={this.state.email}
+							leftIcon={<Icon name="mail-outline" size={34} color="gray" />}
+							containerStyle={styles.inputContainer}
+							onChangeText={value => this.handleInputChange('email', value)}
+						/>
+						<Input
+							placeholder="Confirm Email"
+							keyboardType="email-address"
+							value={this.state.confirmEmail}
+							leftIcon={<Icon name="mail-outline" size={34} color="gray" />}
+							containerStyle={styles.inputContainer}
+							onChangeText={value =>
+								this.handleInputChange('confirmEmail', value)
+							}
+						/>
+					</View>
+
+					<View style={styles.dualHolder}>
+						<Input
+							placeholder="Password"
+							secureTextEntry
+							value={this.state.password}
+							leftIcon={<Icon name="lock" size={34} color="gray" />}
+							containerStyle={styles.inputContainer}
+							onChangeText={value => this.handleInputChange('password', value)}
+						/>
+						<Input
+							placeholder="Confirm Password"
+							secureTextEntry
+							value={this.state.confirmPassword}
+							leftIcon={<Icon name="lock" size={34} color="gray" />}
+							containerStyle={styles.inputContainer}
+							onChangeText={value =>
+								this.handleInputChange('confirmPassword', value)
+							}
+						/>
+					</View>
+
 					<CheckBox
 						title="I can legally verify I am 21 years or older"
 						checked={this.state.checked}
 						onPress={this.handleCheckChange}
 					/>
-
-					<FormValidationMessage>
-						{this.state.errorMessage}
-					</FormValidationMessage>
 				</View>
 			</View>
 		);
@@ -109,6 +111,15 @@ const styles = {
 		width: width / 1.1,
 		borderRadius: 15,
 		backgroundColor: 'white'
+	},
+	inputContainer: {
+		padding: 5,
+		margin: 5,
+		borderWidth: 1,
+		borderRadius: 15
+	},
+	dualHolder: {
+		margin: 15
 	}
 };
 

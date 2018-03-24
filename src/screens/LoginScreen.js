@@ -40,7 +40,9 @@ class LoginScreen extends Component {
 						<SocialIcon
 							title="Sign In With Facebook"
 							button
+							raised
 							type="facebook"
+							style={{ marginBottom: 15 }}
 							onPress={this.facebookLoginHandler}
 						/>
 						<Hr color="black" width={1}>
@@ -48,12 +50,15 @@ class LoginScreen extends Component {
 						</Hr>
 					</View>
 					<Input
-						placeholder="Username"
+						placeholder="Email"
 						leftIcon={<Icon name="account-circle" size={34} color="gray" />}
+						containerStyle={styles.inputContainer}
 					/>
 					<Input
-						placeholder="Email"
-						leftIcon={<Icon name="mail-outline" size={34} color="gray" />}
+						placeholder="Password"
+						secureTextEntry
+						leftIcon={<Icon name="lock" size={34} color="gray" />}
+						containerStyle={styles.inputContainer}
 					/>
 					<TouchableOpacity style={styles.signUp} onPress={this.handleToSignUp}>
 						<Text>To Sign Up</Text>
@@ -69,7 +74,7 @@ const { width, height } = Dimensions.get('window');
 const styles = {
 	container: {
 		flex: 1,
-		marginTop: height / 2.2,
+		marginTop: height / 2.5,
 		alignItems: 'center',
 		justifyContent: 'center'
 	},
@@ -83,10 +88,18 @@ const styles = {
 	},
 	textWithDivider: {
 		color: '#5f575a',
-		marginVertical: 10,
 		paddingHorizontal: 10
 	},
+	inputContainer: {
+		padding: 5,
+		margin: 5,
+		borderWidth: 1,
+		borderRadius: 15
+	},
 	signUp: {
+		position: 'absolute',
+		bottom: 25,
+		right: width / 5,
 		marginTop: 25
 	}
 };
