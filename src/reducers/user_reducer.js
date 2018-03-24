@@ -1,9 +1,13 @@
-import { SET_USER } from '../actions/types';
+import { SET_SELECTED_STADIUM } from '../actions/types';
 
-export default function userReducer(state = null, action) {
+const INITIALSTATE = {
+	selected: ''
+};
+
+export default function userReducer(state = INITIALSTATE, action) {
 	switch (action.type) {
-		case SET_USER:
-			return action.payload;
+		case SET_SELECTED_STADIUM:
+			return { ...state, selected: action.payload };
 		default:
 			return state;
 	}
