@@ -7,6 +7,7 @@ import {
 	ToastAndroid,
 	ImageBackground
 } from 'react-native';
+import PropTypes from 'prop-types';
 import { Button } from 'react-native-elements';
 import { firebaseConnect } from 'react-redux-firebase';
 import { connect } from 'react-redux';
@@ -137,6 +138,11 @@ const mapStateToProps = ({ firebase, navigation, user }) => ({
 	route: navigation.routes[0].routes.length,
 	stadiums: firebase.ordered.stadiums
 });
+
+StadiumScreen.propTypes = {
+	selected: PropTypes.string.isRequired,
+	stadiums: PropTypes.node
+};
 
 export default compose(
 	firebaseConnect(() => [{ path: 'stadiums' }]),

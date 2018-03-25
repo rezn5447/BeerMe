@@ -2,18 +2,13 @@ import React, { Component } from 'react';
 import { View, Alert, Text, ImageBackground } from 'react-native';
 import { Button, Input } from 'react-native-elements';
 import Hr from 'react-native-hr-plus';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ContinueButton, ScreenHeader } from '../components';
 import { changeSeating } from '../actions';
 import BackImg from '../assets/bg1.png';
 
 class SeatScreen extends Component {
-	state = {
-		seat: '',
-		section: '',
-		row: ''
-	};
-
 	handleLogout = () => {
 		this.props.navigation.navigate('Login');
 	};
@@ -88,5 +83,11 @@ const mapStateToProps = ({ user }) => ({
 	section: user.section,
 	row: user.row
 });
+
+SeatScreen.propTypes = {
+	seat: PropTypes.string.isRequired,
+	section: PropTypes.string.isRequired,
+	row: PropTypes.string.isRequired
+};
 
 export default connect(mapStateToProps, { changeSeating })(SeatScreen);
