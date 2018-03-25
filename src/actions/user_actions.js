@@ -1,8 +1,6 @@
 import { SET_SELECTED_STADIUM } from './types';
-import { Alert } from 'react-native';
 
 export const selectStadium = stadiumKey => async dispatch => {
-	Alert.alert('backend', stadiumKey);
 	dispatch({ type: SET_SELECTED_STADIUM, payload: stadiumKey });
 };
 

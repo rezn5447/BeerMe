@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import {
 	View,
+	Text,
 	Alert,
 	FlatList,
-	ToastAndroid,
-	Text,
+	Platform,
 	BackHandler,
+	ToastAndroid,
 	ImageBackground
 } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button, Header } from 'react-native-elements';
 import { firebaseConnect } from 'react-redux-firebase';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -85,6 +86,15 @@ class StadiumScreen extends Component {
 	render() {
 		return (
 			<ImageBackground source={BackImg} style={styles.bgImg}>
+				<Header
+					outerContainerStyles={{
+						marginTop: 25
+					}}
+					centerComponent={{
+						text: 'SELECT A STADIUM',
+						style: { color: '#fff' }
+					}}
+				/>
 				<View style={styles.container}>
 					<View style={{ height: 300 }}>
 						<Text>Here is where the stadiums go</Text>
