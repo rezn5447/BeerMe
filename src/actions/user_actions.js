@@ -1,7 +1,11 @@
-import { SET_SELECTED_STADIUM } from './types';
+import { SET_SELECTED_STADIUM, UPDATE_USER_SEATING } from './types';
 
 export const selectStadium = stadiumKey => async dispatch => {
 	dispatch({ type: SET_SELECTED_STADIUM, payload: stadiumKey });
+};
+
+export const changeSeating = (param, value) => async dispatch => {
+	dispatch({ type: UPDATE_USER_SEATING, param, payload: value });
 };
 
 //

@@ -4,6 +4,7 @@ import { Button, Input } from 'react-native-elements';
 import Hr from 'react-native-hr-plus';
 import { connect } from 'react-redux';
 import { ScreenHeader } from '../components';
+import { changeSeating } from '../actions';
 import BackImg from '../assets/bg1.png';
 
 class SeatScreen extends Component {
@@ -18,10 +19,7 @@ class SeatScreen extends Component {
 	};
 
 	handleInputChange = (param, value) => {
-		this.setState({
-			...this.state,
-			[param]: value
-		});
+		this.props.changeSeating(param, value);
 	};
 
 	scanTicket = () => {
@@ -33,29 +31,30 @@ class SeatScreen extends Component {
 			<ImageBackground source={BackImg} style={{ flex: 1 }}>
 				<ScreenHeader text="SELECT SEAT SECTION AND ROW" />
 				<View style={styles.container}>
-					<Button
-						title="Scan Ticket"
-						buttonStyle={styles.ticketButton}
-						onPress={this.scanTicket}
-					/>
-					<Hr color="black" width={1}>
-						<Text style={styles.textWithDivider}>OR INPUT MANUALLY</Text>
-					</Hr>
-
 					<Input
 						placeholder="Seat"
-						value={this.state.seat}
+						value={this.props.seat}
 						onChangeText={value => this.handleInputChange('seat', value)}
 					/>
 					<Input
 						placeholder="Section"
-						value={this.state.section}
+						value={this.props.section}
 						onChangeText={value => this.handleInputChange('section', value)}
 					/>
 					<Input
 						placeholder="Row"
-						value={this.state.row}
+						value={this.props.row}
 						onChangeText={value => this.handleInputChange('row', value)}
+					/>
+					<Hr color="black" width={1}>
+						<Text style={styles.textWithDivider}>
+							OR SCAN TICKET IF YOU STILL GOT IT!
+						</Text>
+					</Hr>
+					<Button
+						title="Scan Ticket"
+						buttonStyle={styles.ticketButton}
+						onPress={this.scanTicket}
 					/>
 				</View>
 			</ImageBackground>
@@ -77,4 +76,10 @@ const styles = {
 	}
 };
 
-export default connect(null, {})(SeatScreen);
+const mapStateToProps = ({ user }) => ({
+	seat: user.seat,
+	section: user.section,
+	row: user.row
+});
+
+export default connect(mapStateToProps, { changeSeating })(SeatScreen);
