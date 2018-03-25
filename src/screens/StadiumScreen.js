@@ -42,17 +42,21 @@ class StadiumScreen extends Component {
 	};
 
 	handleBackButton = () => {
-		Alert.alert('Logging Out', 'Log out and Return to Title Screen?', [
-			{
-				text: 'Cancel',
-				onPress: this.handleCancel,
-				style: 'cancel'
-			},
-			{
-				text: 'OK',
-				onPress: this.handleLogout
-			}
-		]);
+		if (this.props.route === 1) {
+			Alert.alert('Logging Out', 'Log out and Return to Title Screen?', [
+				{
+					text: 'Cancel',
+					onPress: this.handleCancel,
+					style: 'cancel'
+				},
+				{
+					text: 'OK',
+					onPress: this.handleLogout
+				}
+			]);
+			return true;
+		}
+		this.props.navigation.pop();
 		return true;
 	};
 
@@ -123,9 +127,10 @@ const styles = {
 	}
 };
 
-const mapStateToProps = ({ firebase, user }) => ({
+const mapStateToProps = ({ firebase, navigation, user }) => ({
 	selected: user.selected,
 	profile: firebase.profile,
+	route: navigation.routes[0].routes.length,
 	stadiums: firebase.ordered.stadiums
 });
 
