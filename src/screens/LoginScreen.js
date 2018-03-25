@@ -35,7 +35,7 @@ class LoginScreen extends Component {
 
 	render() {
 		return (
-			<ImageBackground source={BackImg} style={styles.bgImage}>
+			<ImageBackground source={BackImg} style={{ flex: 1 }}>
 				<View style={styles.container}>
 					<KeyboardAvoidingView behavior="padding" style={styles.loginBtn}>
 						<SocialIcon
@@ -79,9 +79,6 @@ const styles = {
 		marginTop: height / 2.5,
 		alignItems: 'center',
 		justifyContent: 'center'
-	},
-	bgImage: {
-		flex: 1
 	},
 	loginBtn: {
 		width: width / 1.5,
