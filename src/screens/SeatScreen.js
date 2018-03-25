@@ -3,7 +3,7 @@ import { View, Alert, Text, ImageBackground } from 'react-native';
 import { Button, Input } from 'react-native-elements';
 import Hr from 'react-native-hr-plus';
 import { connect } from 'react-redux';
-import { ScreenHeader } from '../components';
+import { ContinueButton, ScreenHeader } from '../components';
 import { changeSeating } from '../actions';
 import BackImg from '../assets/bg1.png';
 
@@ -55,6 +55,13 @@ class SeatScreen extends Component {
 						title="Scan Ticket"
 						buttonStyle={styles.ticketButton}
 						onPress={this.scanTicket}
+					/>
+
+					<ContinueButton
+						title="Continue"
+						disabled={this.props.selected}
+						name="arrow-forward"
+						onPress={this.handleNav}
 					/>
 				</View>
 			</ImageBackground>
