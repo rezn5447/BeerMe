@@ -5,4 +5,6 @@ export const SIGN_OUT = 'SIGN_OUT';
 
 export const FETCH_USER = 'FETCH_USER';
 export const STADIUM_FETCH_SUCCESS = 'STADIUM_FETCH_SUCCESS';
+
 export const SET_USER = 'SET_USER';
+export const SET_SELECTED_STADIUM = 'SET_SELECTED_STADIUM';

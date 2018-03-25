@@ -1,24 +1,7 @@
-import axios from 'axios';
-import firebase from 'firebase';
+import { SET_SELECTED_STADIUM } from './types';
 
-import { FETCH_USER, STADIUM_FETCH_SUCCESS, SET_USER } from './types';
-
-export const fetchUser = () => async dispatch => {
-	const res = await axios.get('/api/current_user');
-	dispatch({ type: FETCH_USER, payload: res.data });
-};
-
-export const setUser = user => async dispatch => {
-	dispatch({ type: SET_USER, payload: user });
-};
-
-export const fetchStadiums = () => async dispatch => {
-	firebase
-		.database()
-		.ref('/stadiums/')
-		.on('value', snapshot => {
-			dispatch({ type: STADIUM_FETCH_SUCCESS, payload: snapshot.val() });
-		});
+export const selectStadium = stadiumKey => async dispatch => {
+	dispatch({ type: SET_SELECTED_STADIUM, payload: stadiumKey });
 };
 
 //
@@ -39,3 +22,12 @@ export const fetchStadiums = () => async dispatch => {
 // 	console.log(this.fb);
 // 	return firebase.auth(this.fb)
 // }
+
+// export const fetchUser = () => async dispatch => {
+// 	const res = await axios.get('/api/current_user');
+// 	dispatch({ type: FETCH_USER, payload: res.data });
+// };
+//
+// export const setUser = user => async dispatch => {
+// 	dispatch({ type: SET_USER, payload: user });
+// };

@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import {
 	View,
+	Text,
 	Alert,
 	FlatList,
-	ToastAndroid,
-	Text,
+	Platform,
 	BackHandler,
+	ToastAndroid,
 	ImageBackground
 } from 'react-native';
-import { Button } from 'react-native-elements';
+import { Button, Header } from 'react-native-elements';
 import { firebaseConnect } from 'react-redux-firebase';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { signOut } from '../actions';
+import { signOut, selectStadium } from '../actions';
 import { ContinueButton } from '../components';
 import BackImg from '../assets/bg1.png';
 
@@ -57,13 +58,12 @@ class StadiumScreen extends Component {
 		return true;
 	};
 
-	handleStadiumPress = name => {
-		Alert.alert(`${name} pressed`);
+	handleStadiumPress = stadiumKey => {
+		this.props.selectStadium(stadiumKey);
 	};
 
 	renderStadiumList() {
-		const { stadiums } = this.props;
-		console.log(stadiums);
+		const { stadiums, selected } = this.props;
 		return (
 			<FlatList
 				style={{ margin: 5 }}
@@ -72,8 +72,11 @@ class StadiumScreen extends Component {
 					<Button
 						key={item.key}
 						title={item.value.label}
-						buttonStyle={styles.stadiumButton}
-						onPress={() => this.handleStadiumPress(item.value.name)}
+						buttonStyle={[
+							styles.stadiumButton,
+							selected === item.key && styles.selected
+						]}
+						onPress={() => this.handleStadiumPress(item.key)}
 					/>
 				)}
 			/>
@@ -83,6 +86,15 @@ class StadiumScreen extends Component {
 	render() {
 		return (
 			<ImageBackground source={BackImg} style={styles.bgImg}>
+				<Header
+					outerContainerStyles={{
+						marginTop: 25
+					}}
+					centerComponent={{
+						text: 'SELECT A STADIUM',
+						style: { color: '#fff' }
+					}}
+				/>
 				<View style={styles.container}>
 					<View style={{ height: 300 }}>
 						<Text>Here is where the stadiums go</Text>
@@ -111,8 +123,12 @@ const styles = {
 	},
 	stadiumButton: {
 		margin: 2,
-		backgroundColor: '#00bcd4',
+		backgroundColor: '#9e9e9e',
 		borderRadius: 5
+	},
+	selected: {
+		backgroundColor: '#00bcd4',
+		borderRadius: 25
 	},
 	TextStyle: {
 		fontSize: 25,
@@ -120,12 +136,13 @@ const styles = {
 	}
 };
 
-const mapStateToProps = ({ firebase }) => ({
+const mapStateToProps = ({ firebase, user }) => ({
+	selected: user.selected,
 	profile: firebase.profile,
 	stadiums: firebase.ordered.stadiums
 });
 
 export default compose(
 	firebaseConnect(() => [{ path: 'stadiums' }]),
-	connect(mapStateToProps, { signOut })
+	connect(mapStateToProps, { signOut, selectStadium })
 )(StadiumScreen);
