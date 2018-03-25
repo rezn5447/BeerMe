@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { CheckBox, Icon, Input } from 'react-native-elements';
 import { View, Alert, Dimensions } from 'react-native';
+import { CheckBox, Icon, Input } from 'react-native-elements';
 import firebase from 'firebase';
 import { ContinueButton } from '../components';
 
