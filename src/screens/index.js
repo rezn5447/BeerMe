@@ -6,6 +6,7 @@ import PlaceScreen from './PlaceScreen';
 import SeatScreen from './SeatScreen';
 import SignUpScreen from './SignUpScreen';
 import StadiumScreen from './StadiumScreen';
+import BarcodeScannerScreen from './BarcodeScannerScreen';
 
 export {
 	ConfirmScreen,
@@ -15,5 +16,6 @@ export {
 	PlaceScreen,
 	SeatScreen,
 	SignUpScreen,
-	StadiumScreen
+	StadiumScreen,
+	BarcodeScannerScreen
 };

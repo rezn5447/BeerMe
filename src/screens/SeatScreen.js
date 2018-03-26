@@ -23,7 +23,7 @@ class SeatScreen extends Component {
 	};
 
 	scanTicket = () => {
-		Alert.alert('pressed');
+		this.props.navigation.navigate('Scanner');
 	};
 
 	render() {
