@@ -7,6 +7,7 @@ import {
 	ToastAndroid,
 	ImageBackground
 } from 'react-native';
+import PropTypes from 'prop-types';
 import { Button } from 'react-native-elements';
 import { firebaseConnect } from 'react-redux-firebase';
 import { connect } from 'react-redux';
@@ -29,7 +30,11 @@ class StadiumScreen extends Component {
 	};
 
 	handleNav = () => {
-		this.props.navigation.navigate('Seat');
+		if (this.props.selected === '') {
+			Alert.alert('pick a stadium before continuing');
+		} else {
+			this.props.navigation.navigate('Seat');
+		}
 	};
 
 	handleLogout = () => {
@@ -94,7 +99,7 @@ class StadiumScreen extends Component {
 					<ContinueButton
 						title="Continue"
 						disabled={this.props.selected}
-						name="account-circle"
+						name="arrow-forward"
 						onPress={this.handleNav}
 					/>
 				</View>
@@ -133,6 +138,10 @@ const mapStateToProps = ({ firebase, navigation, user }) => ({
 	route: navigation.routes[0].routes.length,
 	stadiums: firebase.ordered.stadiums
 });
+
+StadiumScreen.propTypes = {
+	selected: PropTypes.string.isRequired
+};
 
 export default compose(
 	firebaseConnect(() => [{ path: 'stadiums' }]),

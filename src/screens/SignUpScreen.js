@@ -131,7 +131,9 @@ const styles = {
 };
 
 SignUpScreen.propTypes = {
-	email: PropTypes.string,
-	password: PropTypes.string,
-	age: PropTypes.number
+	email: PropTypes.string.isRequired,
+	password: PropTypes.string.isRequired,
+	confirmEmail: PropTypes.string.isRequired,
+	confirmPassword: PropTypes.string.isRequired,
+	checked: PropTypes.bool.isRequired
 };
