@@ -140,8 +140,7 @@ const mapStateToProps = ({ firebase, navigation, user }) => ({
 });
 
 StadiumScreen.propTypes = {
-	selected: PropTypes.string.isRequired,
-	stadiums: PropTypes.node
+	selected: PropTypes.string.isRequired
 };
 
 export default compose(

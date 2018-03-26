@@ -9,8 +9,13 @@ import { changeSeating } from '../actions';
 import BackImg from '../assets/bg1.png';
 
 class SeatScreen extends Component {
-	handleLogout = () => {
-		this.props.navigation.navigate('Login');
+	handleNav = () => {
+		const { seat, section, row } = this.props;
+		if (seat === '' || section === '' || row === '') {
+			Alert.alert('finish seating input');
+		} else {
+			this.props.navigation.navigate('Order');
+		}
 	};
 
 	handleInputChange = (param, value) => {
@@ -26,26 +31,29 @@ class SeatScreen extends Component {
 			<ImageBackground source={BackImg} style={{ flex: 1 }}>
 				<ScreenHeader text="SELECT SEAT SECTION AND ROW" />
 				<View style={styles.container}>
-					<Input
-						placeholder="Seat"
-						value={this.props.seat}
-						onChangeText={value => this.handleInputChange('seat', value)}
-					/>
-					<Input
-						placeholder="Section"
-						value={this.props.section}
-						onChangeText={value => this.handleInputChange('section', value)}
-					/>
-					<Input
-						placeholder="Row"
-						value={this.props.row}
-						onChangeText={value => this.handleInputChange('row', value)}
-					/>
+					<View style={{ marginBottom: 15 }}>
+						<Input
+							placeholder="Seat"
+							value={this.props.seat}
+							onChangeText={value => this.handleInputChange('seat', value)}
+						/>
+						<Input
+							placeholder="Section"
+							value={this.props.section}
+							onChangeText={value => this.handleInputChange('section', value)}
+						/>
+						<Input
+							placeholder="Row"
+							value={this.props.row}
+							onChangeText={value => this.handleInputChange('row', value)}
+						/>
+					</View>
 					<Hr color="black" width={1}>
 						<Text style={styles.textWithDivider}>
 							OR SCAN TICKET IF YOU STILL GOT IT!
 						</Text>
 					</Hr>
+
 					<Button
 						title="Scan Ticket"
 						buttonStyle={styles.ticketButton}
@@ -70,10 +78,12 @@ const styles = {
 		alignItems: 'center',
 		justifyContent: 'center'
 	},
+	ticketButton: {
+		marginTop: 15,
+		marginBottom: 15
+	},
 	textWithDivider: {
 		color: '#5f575a',
-		marginTop: 10,
-		marginBottom: 10,
 		paddingHorizontal: 10
 	}
 };
